@@ -1,0 +1,859 @@
+/* 
+    ======================================================================
+    MANGALAM HDPE PIPES - STYLESHEET
+    ======================================================================
+    BEST PRACTICE: Organize CSS with a clear structure: 
+    1. Variables/Tokens 
+    2. Resets/Base styles
+    3. Utilities/Components
+    4. Main Layout (Header, Hero, etc.)
+    5. Media Queries (Responsiveness)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* 
+        BEST PRACTICE: Use CSS Custom Properties (Variables) for theming.
+        This provides a single source of truth for colors and sizing, 
+        making global changes (or dark mode implementation) much easier.
+    */
+    /* Mangalam Figma Palette */
+    --primary: #2A3990;
+    /* Deep Navy Blue */
+    --primary-hover: #1f2a6b;
+    --text-dark: #1F2937;
+    --text-body: #4B5563;
+    --text-light: #9CA3AF;
+    --bg-main: #FFFFFF;
+    --bg-light: #F8F9FA;
+    --border: #E5E7EB;
+    --accent-yellow: #FEF3C7;
+    --accent-yellow-text: #B45309;
+
+    --font-sans: 'Inter', sans-serif;
+    --border-radius: 8px;
+    --transition-fast: 0.2s ease;
+    --transition: 0.3s ease;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    --header-height: 80px;
+}
+
+/* 
+    ======================================================================
+    BASE RESETS
+    ======================================================================
+*/
+* {
+    /* BEST PRACTICE: Box-sizing border-box ensures padding/borders don't expand element width */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /* BEST PRACTICE: smooth scrolling behavior for internal anchor links (#specs, #products) */
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+    /* Prevents sticky header from obscuring scrolled content */
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--text-body);
+    background-color: var(--bg-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: var(--text-dark);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 
+    ======================================================================
+    REUSABLE COMPONENTS
+    ======================================================================
+    BEST PRACTICE: Create utility classes (.container, .btn) to keep CSS DRY (Don't Repeat Yourself).
+*/
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+    /* 48px padding standard from Figma */
+}
+
+/* Button Components */
+.btn {
+    /* BEST PRACTICE: Use `inline-flex` for buttons to easily align content (like icons) and maintain block-like behavior for width/height. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dark);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background-color: var(--bg-light);
+}
+
+.btn-large {
+    padding: 16px 32px;
+    font-size: 1.125rem;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.icon-sm {
+    width: 18px;
+    height: 18px;
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.badge-yellow {
+    background-color: var(--accent-yellow);
+    color: var(--accent-yellow-text);
+}
+
+/* 
+    ======================================================================
+    NAVIGATION
+    ======================================================================
+    BEST PRACTICE: Use semantic HTML for navigation.
+    Flexbox is ideal for aligning items in a single row or column.
+*/
+.nav-wrapper {
+    height: var(--header-height);
+    background-color: var(--bg-main);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 50;
+    /* Ensures nav-wrapper is above most content but below sticky header */
+}
+
+.navbar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    /* BEST PRACTICE: Use flexbox for main navigation layout to distribute items */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.logo-subtext {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+/* 
+    ======================================================================
+    STICKY HEADER SPECIFIC STYLES
+    ======================================================================
+    BEST PRACTICE: Use transform: translateY for performant animations.
+    Animating transform and opacity does not trigger layout recalculations (reflows) 
+    in the browser, resulting in a smooth 60fps animation.
+*/
+.nav-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-main);
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+    /* High z-index to stay above page content */
+    transform: translateY(-100%);
+    /* Hidden state off-screen */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    height: var(--header-height);
+    pointer-events: none;
+    /* Ignore clicks while hidden */
+}
+
+.nav-sticky.is-visible {
+    transform: translateY(0);
+    pointer-events: auto;
+    /* Re-enable clicks */
+}
+
+.nav-sticky.is-hidden {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+
+/* Hero Section */
+.hero {
+    padding: 80px 0;
+    background-color: var(--bg-main);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 540px;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+.hero-features-list {
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.hero-features-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.feature-icon {
+    color: var(--primary);
+    width: 20px;
+    height: 20px;
+}
+
+.price-card {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.price-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.price-range {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.currency {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.amount {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
+}
+
+.badges {
+    display: flex;
+    gap: 8px;
+}
+
+.price-subtext {
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.hero-visual {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.hero-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    position: relative;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Image Carousel Section */
+.carousel-section {
+    padding: 80px 0;
+    background-color: var(--bg-light);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-header {
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-header h2 {
+    font-size: 2.25rem;
+    margin-bottom: 16px;
+}
+
+.carousel-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    user-select: none;
+}
+
+.carousel-main-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-main);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: crosshair;
+}
+
+.carousel-main-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: opacity var(--transition-fast);
+}
+
+/* Zoom features */
+.zoom-lens {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background-color: rgba(42, 57, 144, 0.1);
+    cursor: crosshair;
+    display: none;
+    z-index: 10;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3);
+}
+
+.zoom-result {
+    position: absolute;
+    top: 0;
+    right: -420px;
+    width: 400px;
+    height: 400px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    background-color: white;
+    background-repeat: no-repeat;
+    display: none;
+    z-index: 20;
+    box-shadow: var(--shadow-lg);
+    pointer-events: none;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: white;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    z-index: 5;
+    opacity: 0.8;
+}
+
+.carousel-arrow:hover {
+    opacity: 1;
+    background-color: var(--bg-light);
+}
+
+.carousel-arrow.prev {
+    left: 24px;
+}
+
+.carousel-arrow.next {
+    right: 24px;
+}
+
+.carousel-thumbnails {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+}
+
+.thumbnail {
+    flex: 0 0 calc(25% - 12px);
+    aspect-ratio: 4/3;
+    border-radius: var(--border-radius);
+    border: 2px solid transparent;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    background-color: var(--bg-main);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail.active {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(42, 57, 144, 0.2);
+}
+
+.thumbnail:hover:not(.active) {
+    border-color: var(--border);
+    opacity: 0.8;
+}
+
+
+/* Tech Specs Table Section */
+.tech-specs-section {
+    padding: 80px 0;
+}
+
+.bg-light {
+    background-color: var(--bg-light);
+}
+
+.specs-wrapper {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    padding: 32px;
+}
+
+.specs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+}
+
+.specs-tabs {
+    display: flex;
+    gap: 16px;
+}
+
+.tab-btn {
+    background: none;
+    padding: 8px 16px;
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.specs-table th,
+.specs-table td {
+    padding: 16px 24px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.specs-table th {
+    background-color: var(--bg-light);
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.specs-table tr:last-child td {
+    border-bottom: none;
+}
+
+.specs-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+
+/* Footer Section */
+.footer-section {
+    background-color: #111827;
+    padding: 64px 0 32px;
+    color: white;
+}
+
+.catalogue-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 32px;
+}
+
+.catalogue-text h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.catalogue-text p {
+    color: #9CA3AF;
+}
+
+.catalogue-form {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.input-field {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    outline: none;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #9CA3AF;
+    font-size: 0.875rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform var(--transition);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: var(--text-dark);
+}
+
+.modal-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.modal-desc {
+    color: var(--text-light);
+    margin-bottom: 24px;
+    font-size: 0.875rem;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: var(--text-dark);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group .input-field {
+    width: 100%;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+
+    .zoom-result {
+        display: none !important;
+        /* Disable zoom preview on smaller screens to avoid overflow issues */
+    }
+
+    .hero-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .catalogue-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .catalogue-form {
+        max-width: 100%;
+    }
+
+    .specs-wrapper {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .nav-links,
+    .nav-actions .btn {
+        display: none;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-features-list {
+        grid-template-columns: 1fr;
+    }
+
+    .carousel-arrow {
+        width: 36px;
+        height: 36px;
+    }
+
+    .carousel-arrow.prev {
+        left: 8px;
+    }
+
+    .carousel-arrow.next {
+        right: 8px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+}

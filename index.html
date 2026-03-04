@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--
+        BEST PRACTICE: Use semantic meta tags for SEO and responsiveness.
+        - viewport: Ensures the page scales correctly on mobile devices.
+        - description: Critical for Search Engine Optimization (SEO).
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangalam HDPE Pipes | Premium Quality Infrastructure</title>
+    <meta name="description"
+        content="Premium HDPE pipes and coils for modern infrastructure. 50+ year service life, leak-proof, and highly durable.">
+
+    <!-- Link to our external stylesheet (separation of concerns) -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!--
+        BEST PRACTICE: Preconnect to font origins to speed up loading times.
+        Using a clean, modern sans-serif font (Inter) to match premium Figma designs.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!--
+        BEST PRACTICE: Use a modern icon library via CDN.
+        Lucide provides clean, scalable vector icons (SVGs) rather than heavier icon fonts.
+    -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!--
+        ======================================================================
+        MAIN NAVIGATION
+        ======================================================================
+        BEST PRACTICE: Use semantic <nav> elements for primary navigation blocks.
+        This provides context to screen readers and search engines.
+    -->
+    <div class="nav-wrapper">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <a href="#" class="logo">
+                    <span class="logo-text">Mangalam</span>
+                    <span class="logo-subtext">HDPE PIPES</span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">About Us</a></li>
+                    <li>
+                        <a href="#products" class="nav-link dropdown-toggle">
+                            Products <i data-lucide="chevron-down" class="icon-sm"></i>
+                        </a>
+                    </li>
+                    <li><a href="#specs" class="nav-link">Specifications</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="btn btn-primary" id="nav-contact-btn">Contact Us</button>
+                    <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+                        <i data-lucide="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Sticky Header -->
+    <nav class="navbar nav-sticky" id="sticky-header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-text">Mangalam</span>
+                <span class="logo-subtext">HDPE PIPES</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">About Us</a></li>
+                <li>
+                    <a href="#products" class="nav-link dropdown-toggle">
+                        Products <i data-lucide="chevron-down" class="icon-sm"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-primary" id="sticky-contact-btn">Contact Us</button>
+            </div>
+        </div>
+    </nav>
+
+    <!--
+        ======================================================================
+        HERO SECTION
+        ======================================================================
+        BEST PRACTICE: The first visible section (Hero) should have an <h1>.
+        Only ONE <h1> should exist per page for optimal SEO and accessibility.
+    -->
+    <section class="hero" id="home">
+        <div class="container hero-layout">
+            <div class="hero-content">
+                <h1 class="hero-title">Premium HDPE Pipes & Coils for Modern Infrastructure</h1>
+
+                <!-- BEST PRACTICE: Use <ul> for lists of features rather than separate <div>s -->
+                <ul class="hero-features-list">
+                    <li><i data-lucide="check-circle-2" class="feature-icon"></i> Leak-Proof Fusion Joints</li>
+                    <li><i data-lucide="check-circle-2" class="feature-icon"></i> Chemical Resistance</li>
+                    <li><i data-lucide="check-circle-2" class="feature-icon"></i> 50+ Year Service Life</li>
+                    <li><i data-lucide="check-circle-2" class="feature-icon"></i> Flexible Installation</li>
+                </ul>
+
+                <div class="price-card">
+                    <div class="price-header">
+                        <div class="price-range">
+                            <span class="currency">₹</span>
+                            <span class="amount">4,80,000 - 7,90,000</span>
+                        </div>
+                        <div class="badges">
+                            <span class="badge badge-yellow">Shipping</span>
+                            <span class="badge badge-yellow">Returns</span>
+                        </div>
+                    </div>
+                    <p class="price-subtext">Bulk pricing available for industrial orders</p>
+                </div>
+
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-large" id="hero-quote-btn">Get Custom Quote</button>
+                    <a href="#specs" class="btn btn-outline btn-large">View Technical Specs <i data-lucide="arrow-right"
+                            class="icon-sm"></i></a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <!--
+                    BEST PRACTICE for Images:
+                    1. Always include descriptive 'alt' text for screen readers and SEO.
+                    2. Use high-quality placeholders (like Unsplash) while in development.
+                -->
+                <div class="hero-image-wrapper">
+                    <img src="assets/hero.png" alt="Industrial environment showing high quality finish"
+                        class="hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+        ======================================================================
+        IMAGE CAROUSEL WITH HOVER ZOOM
+        ======================================================================
+        This section demonstrates advanced DOM manipulation in vanilla CSS/JS.
+    -->
+    <section class="carousel-section" id="products">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Versatile Applications & Quality Finish</h2>
+                <p>Explore our premium grade HDPE pipes manufactured for diverse industrial needs.</p>
+            </div>
+
+            <div class="carousel-container">
+                <!-- Main Zoomable Image Area -->
+                <div class="carousel-main-wrapper" id="zoom-container">
+                    <img src="assets/thumb1.png" alt="HDPE Pipe Close-up Presentation" class="carousel-main-img"
+                        id="main-product-image">
+
+                    <!-- Zoom Overlay (Magnifying glass effect area) -->
+                    <div class="zoom-lens" id="zoom-lens"></div>
+
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-arrow prev" id="carousel-prev" aria-label="Previous image"><i
+                            data-lucide="chevron-left"></i></button>
+                    <button class="carousel-arrow next" id="carousel-next" aria-label="Next image"><i
+                            data-lucide="chevron-right"></i></button>
+                </div>
+
+                <!-- Zoomed Result Viewer (Appears on hover next to main image) -->
+                <div class="zoom-result" id="zoom-result"></div>
+
+                <!-- Thumbnails -->
+                <div class="carousel-thumbnails">
+                    <div class="thumbnail active" data-index="0">
+                        <img src="assets/thumb1.png" alt="Thumbnail 1: Pipe Profile">
+                    </div>
+                    <div class="thumbnail" data-index="1">
+                        <img src="assets/thumb2.png" alt="Thumbnail 2: Pipe Coils">
+                    </div>
+                    <div class="thumbnail" data-index="2">
+                        <img src="assets/thumb3.png" alt="Thumbnail 3: Fusion Process">
+                    </div>
+                    <div class="thumbnail" data-index="3">
+                        <img src="assets/thumb4.png" alt="Thumbnail 4: Macro Texture">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+        ======================================================================
+        TECHNICAL SPECIFICATIONS
+        ======================================================================
+        BEST PRACTICE: Group tabular data into semantic <table> elements.
+        Using <thead> and <tbody> provides clear structure for assistive technologies.
+    -->
+    <section class="tech-specs-section bg-light" id="specs">
+        <div class="container">
+            <div class="section-header">
+                <h2>Technical Specifications</h2>
+            </div>
+            <!-- BEST PRACTICE: Interactive components (tabs) require JavaScript logic,
+                 but the HTML should represent the default (no-js) logical grouping. -->
+            <div class="specs-wrapper glass animate-on-scroll">
+                <div class="specs-header">
+                    <!-- Tab Navigation Buttons -->
+                    <div class="specs-tabs">
+                        <button class="tab-btn active" data-target="pe100">PE 100</button>
+                        <button class="tab-btn" data-target="pe80">PE 80</button>
+                    </div>
+                </div>
+
+                <!-- Tab Content 1: PE 100 Data -->
+                <div class="table-container active" id="pe100">
+                    <table class="specs-table">
+                        <thead>
+                            <tr>
+                                <th>Nominal Diameter (mm)</th>
+                                <th>SDR 11 (PN 16)</th>
+                                <th>SDR 13.6 (PN 12.5)</th>
+                                <th>SDR 17 (PN 10)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>20</td>
+                                <td>1.9 mm</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>2.3 mm</td>
+                                <td>1.9 mm</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>32</td>
+                                <td>3.0 mm</td>
+                                <td>2.4 mm</td>
+                                <td>1.9 mm</td>
+                            </tr>
+                            <tr>
+                                <td>63</td>
+                                <td>5.8 mm</td>
+                                <td>4.7 mm</td>
+                                <td>3.8 mm</td>
+                            </tr>
+                            <tr>
+                                <td>110</td>
+                                <td>10.0 mm</td>
+                                <td>8.1 mm</td>
+                                <td>6.6 mm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-container" id="pe80" style="display: none;">
+                    <table class="specs-table">
+                        <thead>
+                            <tr>
+                                <th>Nominal Diameter (mm)</th>
+                                <th>SDR 11 (PN 12.5)</th>
+                                <th>SDR 13.6 (PN 10)</th>
+                                <th>SDR 17 (PN 8)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>20</td>
+                                <td>1.8 mm</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>25</td>
+                                <td>2.3 mm</td>
+                                <td>2.0 mm</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>32</td>
+                                <td>2.9 mm</td>
+                                <td>2.3 mm</td>
+                                <td>1.9 mm</td>
+                            </tr>
+                            <tr>
+                                <td>63</td>
+                                <td>5.8 mm</td>
+                                <td>4.7 mm</td>
+                                <td>3.8 mm</td>
+                            </tr>
+                            <tr>
+                                <td>110</td>
+                                <td>10.0 mm</td>
+                                <td>8.1 mm</td>
+                                <td>6.6 mm</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+        ======================================================================
+        FOOTER & LEAD CAPTURE
+        ======================================================================
+        BEST PRACTICE: The <footer> semantic tag delineates the end of main content.
+        Web forms should use the <form> tag with proper inputs and labels/placeholders.
+    -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="catalogue-banner">
+                <div class="catalogue-text">
+                    <h2>Want us to email the entire catalogue?</h2>
+                    <p>Enter your email below and we'll send you our up-to-date specs and pricing.</p>
+                </div>
+                <!--
+                    onsubmit="event.preventDefault()" prevents the page from refreshing
+                    when the user clicks 'Request Catalogue', allowing us to handle it via JS if needed.
+                -->
+                <form class="catalogue-form" onsubmit="event.preventDefault(); alert('Catalogue request sent!');">
+                    <!-- BEST PRACTICE: required attribute ensures form validation before submission -->
+                    <input type="email" placeholder="Enter your email address" required class="input-field">
+                    <button type="submit" class="btn btn-primary">Request Catalogue</button>
+                </form>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Mangalam HDPE Pipes. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--
+        ======================================================================
+        CALLBACK MODAL (HIDDEN BY DEFAULT)
+        ======================================================================
+        Positioned fixed and toggled via JavaScript.
+        BEST PRACTICE: Place modals near the end of the body to prevent z-index stacking context issues.
+    -->
+    <div class="modal-overlay" id="callback-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal" aria-label="Close modal"><i data-lucide="x"></i></button>
+            <h3>Request a Call Back</h3>
+            <p class="modal-desc">Fill out the form below and our industrial specialists will reach out to you.</p>
+            <form
+                onsubmit="event.preventDefault(); alert('Request submitted successfully!'); document.getElementById('callback-modal').classList.remove('active');">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="input-field" required>
+                </div>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" class="input-field" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="input-field" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" class="input-field" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
