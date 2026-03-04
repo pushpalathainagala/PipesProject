@@ -14,36 +14,32 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastScrollTop = 0;
 
     // Threshold in pixels before the sticky header is eligible to appear
-    const scrollThreshold = 300;
+    const scrollThreshold = 400;
 
     // Only apply scroll event if header exists
     if (stickyHeader) {
         /**
-         * BEST PRACTICE for Scroll Events: Scroll events fire rapidly. In highly complex apps, 
-         * you might debounce or throttle this event, or use `requestAnimationFrame`.
+         * BEST PRACTICE for Scroll Events: Removing complex direction checking 
+         * prevents jitter and bounce-scrolling bugs on Android Chrome.
+         * We simply enforce absolute threshold crossing.
          */
         window.addEventListener('scroll', () => {
             // Get current scroll position cross-browser compatible
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
             if (scrollTop > scrollThreshold) {
-                // We are past the threshold
-                if (scrollTop < lastScrollTop) {
-                    // Scrolling UP - Show sticky header
-                    stickyHeader.classList.add('is-visible');
-                    stickyHeader.classList.remove('is-hidden');
-                } else {
-                    // Scrolling DOWN - Hide sticky header
-                    stickyHeader.classList.remove('is-visible');
-                    stickyHeader.classList.add('is-hidden');
-                }
-            } else {
-                // Above the fold - hide it completely
-                stickyHeader.classList.remove('is-visible');
+                // We are past the first fold threshold, lock the sticky header
+                stickyHeader.classList.add('is-visible');
                 stickyHeader.classList.remove('is-hidden');
+            } else {
+                // Scrolling back up above the fold - hide it completely
+                stickyHeader.classList.remove('is-visible');
+                stickyHeader.classList.add('is-hidden');
             }
-
-            lastScrollTop = Math.max(0, scrollTop);
+            // Add a safety check to reset transform when at absolute top for iOS overscroll
+            if (scrollTop <= 0) {
+                stickyHeader.classList.remove('is-hidden', 'is-visible');
+            }
         });
     }
 
@@ -233,23 +229,34 @@ document.addEventListener('DOMContentLoaded', () => {
         4. Mobile Menu Toggle
         ======================================================================
     */
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-wrapper .nav-links');
+    // BEST PRACTICE: Use event delegation or loop through all instances when a component 
+    // (like a navbar) appears multiple times on the same page (Base Nav + Sticky Nav)
+    const mobileMenuBtns = document.querySelectorAll('.mobile-toggle');
 
-    if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.background = '#FFFFFF';
-            navLinks.style.padding = '20px';
-            navLinks.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-            navLinks.style.zIndex = '100';
+    mobileMenuBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Find the closest parent navigation container element
+            const navContainer = btn.closest('nav');
+            if (!navContainer) return;
+
+            // Find the specific links container inside THIS navigation bar
+            const navLinks = navContainer.querySelector('.nav-links');
+
+            if (navLinks) {
+                // Toggle display using inline styles (for simplicity in this vanilla JS demo without extra CSS classes)
+                navLinks.style.display = (navLinks.style.display === 'flex') ? 'none' : 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = '#FFFFFF';
+                navLinks.style.padding = '20px';
+                navLinks.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+                navLinks.style.zIndex = '100';
+            }
         });
-    }
+    });
 
     /* 
         ======================================================================

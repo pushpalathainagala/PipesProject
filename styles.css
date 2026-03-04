@@ -834,6 +834,11 @@ img {
         flex-direction: column;
     }
 
+    /* BEST PRACTICE: Stack multi-column forms into a single column on mobile */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
     .hero-features-list {
         grid-template-columns: 1fr;
     }
